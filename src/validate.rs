@@ -228,7 +228,9 @@ pub fn validate_resource_name(s: &str) -> Result<&str, GwsError> {
             "Resource name must not contain path traversal ('..') segments: {s}"
         )));
     }
-    if s.chars().any(|c| c == '\0' || c.is_control() || is_rejected_unicode(c)) {
+    if s.chars()
+        .any(|c| c == '\0' || c.is_control() || is_rejected_unicode(c))
+    {
         return Err(GwsError::Validation(format!(
             "Resource name contains invalid characters: {s}"
         )));
